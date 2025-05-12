@@ -1,6 +1,6 @@
 # CELCAT to Google Calendar Sync
 
-A Python tool to automatically sync your university timetable from CELCAT (New College of the Humanities/Northeastern London) to Google Calendar.
+A Python tool to automatically sync your university timetable from CELCAT to Google Calendar.
 
 ## Features
 
@@ -62,8 +62,4 @@ timetable_sync_tool/
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-[License information to be added] 
+Contributions are welcome! Please feel free to submit a pull request.
