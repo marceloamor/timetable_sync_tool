@@ -26,14 +26,16 @@ def main():
             logger.error("STUDENT_ID is not set in environment variables")
             return
             
+        # Log the student ID we're using
         logger.info(f"Using student ID: {config.STUDENT_ID}")
         
-        # Initialize CELCAT authentication
+        # Initialize CELCAT authentication with explicit student ID
         auth = CelcatAuth(
             base_url=config.CELCAT_BASE_URL,
             username=config.CELCAT_USERNAME,
             password=config.CELCAT_PASSWORD,
-            student_id=config.STUDENT_ID
+            student_id=config.STUDENT_ID,  # Explicitly pass the student ID
+            headless=False  # Set to False for debugging
         )
         
         # Login to CELCAT

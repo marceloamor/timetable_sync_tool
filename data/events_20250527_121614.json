@@ -1,0 +1,54 @@
+[
+  {
+    "title": "10:30 AM - 1:30 PM",
+    "time": "10:30 AM - 1:30 PM",
+    "start_time": "10:30 AM",
+    "end_time": "1:30 PM",
+    "location": "Devon House 134 [20 Cap]",
+    "instructor": "Waleed Iqbal",
+    "course_details": "Web Services_Sum_S1",
+    "content": "10:30 AM - 1:30 PM\nLCSCI7224_30786729\nDevon House 134 [20 Cap]\nWaleed Iqbal\nWeb Services_Sum_S1",
+    "event_id": "569081157:-2070042380:16:569605:39",
+    "calendar_date": "2025-05-27",
+    "week_date": "2025-05-27"
+  },
+  {
+    "title": "2:30 PM - 5:30 PM",
+    "time": "2:30 PM - 5:30 PM",
+    "start_time": "2:30 PM",
+    "end_time": "5:30 PM",
+    "location": "Devon House 134 [20 Cap]",
+    "instructor": "Waleed Iqbal",
+    "course_details": "Web Services_Sum_S1",
+    "content": "2:30 PM - 5:30 PM\nLCSCI7224_30786729\nDevon House 134 [20 Cap]\nWaleed Iqbal\nWeb Services_Sum_S1",
+    "event_id": "569081157:-2070042380:16:569609:39",
+    "calendar_date": "2025-05-27",
+    "week_date": "2025-05-27"
+  },
+  {
+    "title": "10:00 AM - 1:00 PM",
+    "time": "10:00 AM - 1:00 PM",
+    "start_time": "10:00 AM",
+    "end_time": "1:00 PM",
+    "location": "Devon House 130 [8 Cap]",
+    "instructor": "Ibukun Tolulope Afolabi",
+    "course_details": "Database Management Systems_Sum_S1",
+    "content": "10:00 AM - 1:00 PM\nLCSCI7228_30789170\nDevon House 130 [8 Cap]\nIbukun Tolulope Afolabi\nDatabase Management Systems_Sum_S1",
+    "event_id": "569081157:-2070042380:16:558303:39",
+    "calendar_date": "2025-05-27",
+    "week_date": "2025-05-27"
+  },
+  {
+    "title": "2:00 PM - 5:00 PM",
+    "time": "2:00 PM - 5:00 PM",
+    "start_time": "2:00 PM",
+    "end_time": "5:00 PM",
+    "location": "Devon House 130 [8 Cap]",
+    "instructor": "Ibukun Tolulope Afolabi",
+    "course_details": "Database Management Systems_Sum_S1",
+    "content": "2:00 PM - 5:00 PM\nLCSCI7228_30789170\nDevon House 130 [8 Cap]\nIbukun Tolulope Afolabi\nDatabase Management Systems_Sum_S1",
+    "event_id": "569081157:-2070042380:16:558302:39",
+    "calendar_date": "2025-05-27",
+    "week_date": "2025-05-27"
+  }
+]

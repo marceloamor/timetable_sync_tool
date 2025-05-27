@@ -1,0 +1,217 @@
+2025-05-27 12:11:45,815 - src.celcat.auth - INFO - Initializing CelcatAuth with student_id: 02537852
+2025-05-27 12:11:45,816 - __main__ - INFO - Opening browser and navigating to CELCAT...
+2025-05-27 12:11:45,816 - src.celcat.auth - INFO - Attempting to set up Chrome driver
+2025-05-27 12:11:46,502 - src.celcat.auth - INFO - Detected Chrome version: 136.0.7103.92
+2025-05-27 12:11:46,502 - src.celcat.auth - INFO - Installing ChromeDriver
+2025-05-27 12:11:46,502 - WDM - INFO - ====== WebDriver manager ======
+2025-05-27 12:11:46,611 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-27 12:11:46,657 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-27 12:11:46,684 - WDM - INFO - Driver [/home/marce/.wdm/drivers/chromedriver/linux64/136.0.7103.113/chromedriver-linux64/chromedriver] found in cache
+2025-05-27 12:11:46,684 - src.celcat.auth - INFO - ChromeDriver installed at: /home/marce/.wdm/drivers/chromedriver/linux64/136.0.7103.113/chromedriver-linux64/chromedriver
+2025-05-27 12:11:46,686 - src.celcat.auth - INFO - Creating Chrome WebDriver
+2025-05-27 12:11:49,144 - src.celcat.auth - INFO - Chrome driver setup successful
+2025-05-27 12:11:49,145 - src.celcat.auth - INFO - Navigating to login page: https://timetable.nulondon.ac.uk/login
+2025-05-27 12:11:53,388 - src.celcat.auth - INFO - Saved debug screenshot to debug/before_login_20250527_121153.png
+2025-05-27 12:11:53,396 - src.celcat.auth - INFO - Saved debug HTML to debug/before_login_20250527_121153.html
+2025-05-27 12:11:53,404 - src.celcat.auth - INFO - Current URL: https://timetable.nulondon.ac.uk/LdapLogin
+2025-05-27 12:11:55,750 - src.celcat.auth - INFO - Saved debug screenshot to debug/before_submit_20250527_121155.png
+2025-05-27 12:11:55,756 - src.celcat.auth - INFO - Saved debug HTML to debug/before_submit_20250527_121155.html
+2025-05-27 12:12:03,596 - src.celcat.auth - INFO - Saved debug screenshot to debug/after_login_20250527_121203.png
+2025-05-27 12:12:03,605 - src.celcat.auth - INFO - Saved debug HTML to debug/after_login_20250527_121203.html
+2025-05-27 12:12:03,616 - src.celcat.auth - INFO - Successfully logged in to CELCAT. Current URL: https://timetable.nulondon.ac.uk/cal?vt=month&dt=2025-05-27&et=student&fid0=02537852
+2025-05-27 12:12:03,616 - __main__ - INFO - Successfully logged in!
+2025-05-27 12:12:03,616 - __main__ - INFO - Getting events for 2 weeks...
+2025-05-27 12:12:03,616 - src.celcat.scraper - INFO - Fetching events for 2 weeks starting from 2025-05-27
+2025-05-27 12:12:03,617 - src.celcat.scraper - INFO - Fetching week 1/2: 2025-05-27
+2025-05-27 12:12:03,617 - src.celcat.auth - INFO - Navigating to main timetable URL: https://timetable.nulondon.ac.uk/cal
+2025-05-27 12:12:08,749 - src.celcat.auth - INFO - Saved debug screenshot to debug/main_timetable_20250527_121208.png
+2025-05-27 12:12:08,754 - src.celcat.auth - INFO - Saved debug HTML to debug/main_timetable_20250527_121208.html
+2025-05-27 12:12:18,775 - src.celcat.auth - INFO - Navigating to specific timetable URL: https://timetable.nulondon.ac.uk/cal?vt=agendaWeek&dt=2025-05-27&et=student&fid0=02537852
+2025-05-27 12:12:24,109 - src.celcat.auth - INFO - Saved debug screenshot to debug/specific_timetable_20250527_121224.png
+2025-05-27 12:12:24,117 - src.celcat.auth - INFO - Saved debug HTML to debug/specific_timetable_20250527_121224.html
+2025-05-27 12:12:24,148 - src.celcat.auth - INFO - Successfully navigated to timetable page, found 4 events
+2025-05-27 12:12:28,647 - src.celcat.scraper - INFO - Saved page content to debug/calendar_page_20250527_121228.html
+2025-05-27 12:12:28,712 - src.celcat.scraper - INFO - Saved screenshot to debug/calendar_page_20250527_121228.png
+2025-05-27 12:12:28,725 - src.celcat.scraper - INFO - Found 4 events using selector: a.fc-time-grid-event
+2025-05-27 12:12:28,964 - src.celcat.scraper - INFO - Total events found: 4
+2025-05-27 12:12:28,964 - src.celcat.scraper - INFO - Week 1: Found 4 events, 4 total unique events so far
+2025-05-27 12:12:28,976 - src.celcat.scraper - INFO - Using next button to navigate to next week
+2025-05-27 12:12:34,101 - src.celcat.scraper - INFO - Calendar header shows: Jun 2 – 8, 2025
+2025-05-27 12:12:34,101 - src.celcat.scraper - INFO - Fetching week 2/2: 2025-06-03
+2025-05-27 12:12:34,101 - src.celcat.scraper - INFO - Directly navigating to URL: https://timetable.nulondon.ac.uk/cal?vt=agendaWeek&dt=2025-06-03&et=student&fid0=02537852
+2025-05-27 12:12:42,369 - src.celcat.scraper - INFO - Saved page content to debug/calendar_page_20250527_121242.html
+2025-05-27 12:12:42,415 - src.celcat.scraper - INFO - Saved screenshot to debug/calendar_page_20250527_121242.png
+2025-05-27 12:12:42,427 - src.celcat.scraper - INFO - Found 4 events using selector: a.fc-time-grid-event
+2025-05-27 12:13:24,310 - src.celcat.scraper - INFO - Total events found: 4
+2025-05-27 12:13:24,310 - src.celcat.scraper - INFO - Week 2: Found 4 events, 4 total unique events so far
+2025-05-27 12:13:25,325 - src.celcat.scraper - INFO - Completed fetching 4 unique events across 2 weeks
+2025-05-27 12:13:25,325 - __main__ - INFO - Found 4 events
+2025-05-27 12:13:25,325 - src.celcat.scraper - INFO - Saved 4 events to data/events_20250527_121325.json
+2025-05-27 12:13:25,326 - __main__ - INFO - Saved events to data/events_20250527_121325.json
+2025-05-27 12:13:25,622 - __main__ - INFO - Authenticating with Google Calendar...
+2025-05-27 12:14:47,715 - src.celcat.auth - INFO - Initializing CelcatAuth with student_id: 02537852
+2025-05-27 12:14:47,715 - __main__ - INFO - Opening browser and navigating to CELCAT...
+2025-05-27 12:14:47,715 - src.celcat.auth - INFO - Attempting to set up Chrome driver
+2025-05-27 12:14:47,763 - src.celcat.auth - INFO - Detected Chrome version: 136.0.7103.92
+2025-05-27 12:14:47,763 - src.celcat.auth - INFO - Installing ChromeDriver
+2025-05-27 12:14:47,763 - WDM - INFO - ====== WebDriver manager ======
+2025-05-27 12:14:47,864 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-27 12:14:47,890 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-27 12:14:47,913 - WDM - INFO - Driver [/home/marce/.wdm/drivers/chromedriver/linux64/136.0.7103.113/chromedriver-linux64/chromedriver] found in cache
+2025-05-27 12:14:47,913 - src.celcat.auth - INFO - ChromeDriver installed at: /home/marce/.wdm/drivers/chromedriver/linux64/136.0.7103.113/chromedriver-linux64/chromedriver
+2025-05-27 12:14:47,914 - src.celcat.auth - INFO - Creating Chrome WebDriver
+2025-05-27 12:14:48,413 - src.celcat.auth - INFO - Chrome driver setup successful
+2025-05-27 12:14:48,413 - src.celcat.auth - INFO - Navigating to login page: https://timetable.nulondon.ac.uk/login
+2025-05-27 12:14:50,978 - src.celcat.auth - ERROR - Error saving debug screenshot: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=136.0.7103.92)
+Stacktrace:
+#0 0x55c77567f71a <unknown>
+#1 0x55c7751220a0 <unknown>
+#2 0x55c7751088ae <unknown>
+#3 0x55c775130be9 <unknown>
+#4 0x55c7751a1cef <unknown>
+#5 0x55c7751bec3c <unknown>
+#6 0x55c775199173 <unknown>
+#7 0x55c775165d4b <unknown>
+#8 0x55c7751669b1 <unknown>
+#9 0x55c7756448cb <unknown>
+#10 0x55c7756487ca <unknown>
+#11 0x55c77562c622 <unknown>
+#12 0x55c775649354 <unknown>
+#13 0x55c77561145f <unknown>
+#14 0x55c77566d4f8 <unknown>
+#15 0x55c77566d6d6 <unknown>
+#16 0x55c77567e586 <unknown>
+#17 0x7fbb781deaa4 <unknown>
+#18 0x7fbb7826bc3c <unknown>
+
+2025-05-27 12:14:50,983 - src.celcat.auth - ERROR - Failed to log in to CELCAT: Message: invalid session id
+Stacktrace:
+#0 0x55c77567f71a <unknown>
+#1 0x55c775121ef3 <unknown>
+#2 0x55c775164f0f <unknown>
+#3 0x55c7751992a6 <unknown>
+#4 0x55c775193be7 <unknown>
+#5 0x55c775192d25 <unknown>
+#6 0x55c7750eba88 <unknown>
+#7 0x55c7756448cb <unknown>
+#8 0x55c7756487ca <unknown>
+#9 0x55c77562c622 <unknown>
+#10 0x55c775649354 <unknown>
+#11 0x55c77561145f <unknown>
+#12 0x55c7750e9821 <unknown>
+#13 0x7fbb7816c1ca <unknown>
+#14 0x7fbb7816c28b __libc_start_main
+#15 0x55c7750b14ea _start
+
+2025-05-27 12:14:50,987 - src.celcat.auth - ERROR - Error saving debug screenshot: Message: invalid session id
+Stacktrace:
+#0 0x55c77567f71a <unknown>
+#1 0x55c775121ef3 <unknown>
+#2 0x55c775164f0f <unknown>
+#3 0x55c7751992a6 <unknown>
+#4 0x55c775193be7 <unknown>
+#5 0x55c775192d25 <unknown>
+#6 0x55c7750eba88 <unknown>
+#7 0x55c7756448cb <unknown>
+#8 0x55c7756487ca <unknown>
+#9 0x55c77562c622 <unknown>
+#10 0x55c775649354 <unknown>
+#11 0x55c77561145f <unknown>
+#12 0x55c7750e9821 <unknown>
+#13 0x7fbb7816c1ca <unknown>
+#14 0x7fbb7816c28b __libc_start_main
+#15 0x55c7750b14ea _start
+
+2025-05-27 12:14:50,988 - __main__ - ERROR - Login failed
+2025-05-27 12:15:04,852 - src.celcat.auth - INFO - Initializing CelcatAuth with student_id: 02537852
+2025-05-27 12:15:04,853 - __main__ - INFO - Opening browser and navigating to CELCAT...
+2025-05-27 12:15:04,853 - src.celcat.auth - INFO - Attempting to set up Chrome driver
+2025-05-27 12:15:04,904 - src.celcat.auth - INFO - Detected Chrome version: 136.0.7103.92
+2025-05-27 12:15:04,904 - src.celcat.auth - INFO - Installing ChromeDriver
+2025-05-27 12:15:04,904 - WDM - INFO - ====== WebDriver manager ======
+2025-05-27 12:15:05,005 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-27 12:15:05,031 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-05-27 12:15:05,056 - WDM - INFO - Driver [/home/marce/.wdm/drivers/chromedriver/linux64/136.0.7103.113/chromedriver-linux64/chromedriver] found in cache
+2025-05-27 12:15:05,056 - src.celcat.auth - INFO - ChromeDriver installed at: /home/marce/.wdm/drivers/chromedriver/linux64/136.0.7103.113/chromedriver-linux64/chromedriver
+2025-05-27 12:15:05,057 - src.celcat.auth - INFO - Creating Chrome WebDriver
+2025-05-27 12:15:05,574 - src.celcat.auth - INFO - Chrome driver setup successful
+2025-05-27 12:15:05,574 - src.celcat.auth - INFO - Navigating to login page: https://timetable.nulondon.ac.uk/login
+2025-05-27 12:15:08,146 - src.celcat.auth - INFO - Saved debug screenshot to debug/before_login_20250527_121508.png
+2025-05-27 12:15:08,150 - src.celcat.auth - INFO - Saved debug HTML to debug/before_login_20250527_121508.html
+2025-05-27 12:15:08,157 - src.celcat.auth - INFO - Current URL: https://timetable.nulondon.ac.uk/LdapLogin
+2025-05-27 12:15:10,444 - src.celcat.auth - INFO - Saved debug screenshot to debug/before_submit_20250527_121510.png
+2025-05-27 12:15:10,450 - src.celcat.auth - INFO - Saved debug HTML to debug/before_submit_20250527_121510.html
+2025-05-27 12:15:19,782 - src.celcat.auth - INFO - Saved debug screenshot to debug/after_login_20250527_121519.png
+2025-05-27 12:15:19,792 - src.celcat.auth - INFO - Saved debug HTML to debug/after_login_20250527_121519.html
+2025-05-27 12:15:19,805 - src.celcat.auth - INFO - Successfully logged in to CELCAT. Current URL: https://timetable.nulondon.ac.uk/cal?vt=month&dt=2025-05-27&et=student&fid0=02537852
+2025-05-27 12:15:19,805 - __main__ - INFO - Successfully logged in!
+2025-05-27 12:15:19,805 - __main__ - INFO - Getting events for 2 weeks...
+2025-05-27 12:15:19,805 - src.celcat.scraper - INFO - Fetching events for 2 weeks starting from 2025-05-27
+2025-05-27 12:15:19,805 - src.celcat.scraper - INFO - Fetching week 1/2: 2025-05-27
+2025-05-27 12:15:19,805 - src.celcat.auth - INFO - Navigating to main timetable URL: https://timetable.nulondon.ac.uk/cal
+2025-05-27 12:15:24,939 - src.celcat.auth - INFO - Saved debug screenshot to debug/main_timetable_20250527_121524.png
+2025-05-27 12:15:24,945 - src.celcat.auth - INFO - Saved debug HTML to debug/main_timetable_20250527_121524.html
+2025-05-27 12:15:34,965 - src.celcat.auth - INFO - Navigating to specific timetable URL: https://timetable.nulondon.ac.uk/cal?vt=agendaWeek&dt=2025-05-27&et=student&fid0=02537852
+2025-05-27 12:15:40,263 - src.celcat.auth - INFO - Saved debug screenshot to debug/specific_timetable_20250527_121540.png
+2025-05-27 12:15:40,272 - src.celcat.auth - INFO - Saved debug HTML to debug/specific_timetable_20250527_121540.html
+2025-05-27 12:15:40,304 - src.celcat.auth - INFO - Successfully navigated to timetable page, found 4 events
+2025-05-27 12:15:43,323 - src.celcat.scraper - INFO - Saved page content to debug/calendar_page_20250527_121543.html
+2025-05-27 12:15:43,403 - src.celcat.scraper - INFO - Saved screenshot to debug/calendar_page_20250527_121543.png
+2025-05-27 12:15:43,418 - src.celcat.scraper - INFO - Found 4 events using selector: a.fc-time-grid-event
+2025-05-27 12:15:43,647 - src.celcat.scraper - INFO - Total events found: 4
+2025-05-27 12:15:43,648 - src.celcat.scraper - INFO - Week 1: Found 4 events, 4 total unique events so far
+2025-05-27 12:15:43,657 - src.celcat.scraper - INFO - Using next button to navigate to next week
+2025-05-27 12:15:50,326 - src.celcat.scraper - INFO - Calendar header shows: Jun 2 – 8, 2025
+2025-05-27 12:15:50,326 - src.celcat.scraper - INFO - Fetching week 2/2: 2025-06-03
+2025-05-27 12:15:50,326 - src.celcat.scraper - INFO - Directly navigating to URL: https://timetable.nulondon.ac.uk/cal?vt=agendaWeek&dt=2025-06-03&et=student&fid0=02537852
+2025-05-27 12:15:58,615 - src.celcat.scraper - INFO - Saved page content to debug/calendar_page_20250527_121558.html
+2025-05-27 12:15:58,670 - src.celcat.scraper - INFO - Saved screenshot to debug/calendar_page_20250527_121558.png
+2025-05-27 12:15:58,682 - src.celcat.scraper - INFO - Found 4 events using selector: a.fc-time-grid-event
+2025-05-27 12:16:13,365 - src.celcat.scraper - ERROR - Error extracting event details: Message: invalid session id
+Stacktrace:
+#0 0x563d7c92571a <unknown>
+#1 0x563d7c3c7ef3 <unknown>
+#2 0x563d7c40af0f <unknown>
+#3 0x563d7c43f2a6 <unknown>
+#4 0x563d7c439be7 <unknown>
+#5 0x563d7c438d25 <unknown>
+#6 0x563d7c391a88 <unknown>
+#7 0x563d7c8ea8cb <unknown>
+#8 0x563d7c8ee7ca <unknown>
+#9 0x563d7c8d2622 <unknown>
+#10 0x563d7c8ef354 <unknown>
+#11 0x563d7c8b745f <unknown>
+#12 0x563d7c38f821 <unknown>
+#13 0x7f45d83501ca <unknown>
+#14 0x7f45d835028b __libc_start_main
+#15 0x563d7c3574ea _start
+
+2025-05-27 12:16:13,368 - src.celcat.scraper - ERROR - Error extracting event details: Message: invalid session id
+Stacktrace:
+#0 0x563d7c92571a <unknown>
+#1 0x563d7c3c7ef3 <unknown>
+#2 0x563d7c40af0f <unknown>
+#3 0x563d7c43f2a6 <unknown>
+#4 0x563d7c439be7 <unknown>
+#5 0x563d7c438d25 <unknown>
+#6 0x563d7c391a88 <unknown>
+#7 0x563d7c8ea8cb <unknown>
+#8 0x563d7c8ee7ca <unknown>
+#9 0x563d7c8d2622 <unknown>
+#10 0x563d7c8ef354 <unknown>
+#11 0x563d7c8b745f <unknown>
+#12 0x563d7c38f821 <unknown>
+#13 0x7f45d83501ca <unknown>
+#14 0x7f45d835028b __libc_start_main
+#15 0x563d7c3574ea _start
+
+2025-05-27 12:16:13,368 - src.celcat.scraper - INFO - Total events found: 2
+2025-05-27 12:16:13,368 - src.celcat.scraper - INFO - Week 2: Found 2 events, 4 total unique events so far
+2025-05-27 12:16:13,370 - src.celcat.scraper - INFO - Next button not found or not clickable, using URL navigation
+2025-05-27 12:16:14,371 - src.celcat.scraper - INFO - Completed fetching 4 unique events across 2 weeks
+2025-05-27 12:16:14,371 - __main__ - INFO - Found 4 events
+2025-05-27 12:16:14,373 - src.celcat.scraper - INFO - Saved 4 events to data/events_20250527_121614.json
+2025-05-27 12:16:14,373 - __main__ - INFO - Saved events to data/events_20250527_121614.json
+2025-05-27 12:16:14,412 - __main__ - INFO - Authenticating with Google Calendar...

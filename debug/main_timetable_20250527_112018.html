@@ -1,0 +1,194 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CELCAT Calendar</title>
+
+    <link rel="manifest" href="/manifest.json">
+
+    
+
+    
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta name="x-stylesheet-fallback-test" content="" class="sr-only"><script>!function(a,b,c,d){var e,f=document,g=f.getElementsByTagName("SCRIPT"),h=g[g.length-1].previousElementSibling,i=f.defaultView&&f.defaultView.getComputedStyle?f.defaultView.getComputedStyle(h):h.currentStyle;if(i&&i[a]!==b)for(e=0;e<c.length;e++)f.write('<link href="'+c[e]+'" '+d+"/>")}("position","absolute",["\/lib\/bootstrap\/dist\/css\/bootstrap.min.css"], "rel=\u0022stylesheet\u0022 integrity=\u0022sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va\u002BPmSTsz\/K68vbdEjh4u\u0022 crossorigin=\u0022anonymous\u0022 ");</script>
+
+        <link rel="stylesheet" href="/css/bundle1.min.css?v=1SEw_HylJX54HjCU6q2oSYDKKhtW8Z5JkII5y5VYDMU">
+    
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext">
+
+    
+
+    
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js">
+        </script>
+<script>(window.jQuery||document.write("\u003Cscript src=\u0022\/lib\/jquery\/dist\/jquery.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+
+        <script src="/lib/moment/min/moment.min.js"></script>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.js">
+        </script>
+<script>(window.jQuery.ui||document.write("\u003Cscript src=\u0022\/lib\/jquery-ui\/jquery-ui.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+
+        <script src="/lib/touchPunch/touchPunch.min.js"></script>
+        <script src="/js/siteBundle.min.js?v=nqnzBFQOWtj1NSFgW1wtl7joopO54BktrjmeJUu4VwI"></script>
+    
+
+    <style>
+        /*centre the spinner*/
+        .sk-fading-circle {
+            position: fixed;
+            z-index: 999;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+
+    <script>
+        CT_TOAST.init('Error', 'Warning', 'Information', 'Success');
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $(".logInOrOut, .adminPageLink").on("click",
+                function (e) {
+                    // when user logs in or out (or access admin pages) we flush the local cache
+                    CT_STORAGE.clearSessionStorage();
+                });
+        });
+
+    </script>
+
+    
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #0d0d0d">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse" style="background-color: #999999">
+
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                    <img src="data:image/png;base64,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" alt="">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+
+
+                <li class="disabled navbar-link"><a id="monthPicker">Date Picker</a></li>
+
+                    <li class="disabled navbar-link"><a id="eventFilter">Event Filter</a></li>
+
+                <li class="disabled navbar-link"><a id="shareCalendar">Share</a></li>
+
+                        <li class="navbar-link"><a href="https://www.celcat.wiki/en/Application_Help/8.2/calendar/homepage?CTDOK=277323386215176631064506" target="_blank">Help</a></li>
+
+            </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                            <a class="logInOrOut" href="/Login/Logout">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>Log Out</span>
+                                <span class="small">- 02537852</span>
+                            </a>
+                    </li>
+                </ul>
+        </div>
+    </div>
+</nav>
+
+    
+
+<div class="sk-fading-circle" hidden="hidden">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+</div>
+
+<div id="mainContentDiv" class="container-fluid body-content" style="min-width: 355px">
+    
+    
+<h2 class="text-danger">Error!</h2>
+<h3 class="text-danger">An error occurred while processing your request</h3>
+
+<p>
+    Please contact your system administrator if the error persists.
+</p>
+
+
+    <hr>
+    <footer class="small">
+        <div class="row">
+            <div class="col-xs-6 hidden-xs hidden-print">
+                <p>© 2025 - CELCAT Calendar <span class="small">(v8.2.524.0)</span></p>
+            </div>
+            <div class="col-xs-6 text-right">
+                
+
+
+
+    <div title="Request culture provider AcceptLanguageHeaderRequestCultureProvider">
+        <form id="selectLanguage" method="post" class="form-horizontal" role="form" action="/Home/SetLanguage?returnUrl=~%2FError">
+            <div class="hidden-print">
+                <span class="hidden-sm hidden-xs">Language</span>
+                <select name="culture" onchange="this.form.submit();" id="requestCulture_RequestCulture_UICulture_Name"><option value="en-GB">English (United Kingdom)</option>
+<option selected="selected" value="en-US">English (United States)</option>
+<option value="fr-FR">French (France)</option>
+</select>
+            </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EjOHIzVthpMnweAVq0b2yt5Dse7Tb-oKWfyCNOzwMfEBenA6pfcOLoSueSf14edyoR6O6ORyJnyifNcJMTjlo1h0kdxRrXBylQ5PiFQl2OgR8bnhR-bUpiPxCSh_6TlnJZzp7oQ3_jeRk7_3Wr4eqCC5bZNEahDALv_E9SKZstP65LHs2s_eq82XUYDJvygUw"></form>
+    </div>
+
+            </div>
+        </div>
+        
+        
+        
+    </footer>
+</div>
+
+
+
+
+    <script src="/js/bundle1.min.js"></script>
+
+    <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js">
+    </script>
+<script>(window.jQuery && window.jQuery.fn && window.jQuery.fn.modal||document.write("\u003Cscript src=\u0022\/lib\/bootstrap\/dist\/js\/bootstrap.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+
+    <script src="/js/bundle2.min.js"></script>
+
+
+
+    
+
+
+</body></html>

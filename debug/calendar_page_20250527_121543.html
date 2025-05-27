@@ -1,0 +1,586 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CELCAT Calendar</title>
+
+    <link rel="manifest" href="/manifest.json">
+
+    
+
+    
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta name="x-stylesheet-fallback-test" content="" class="sr-only"><script>!function(a,b,c,d){var e,f=document,g=f.getElementsByTagName("SCRIPT"),h=g[g.length-1].previousElementSibling,i=f.defaultView&&f.defaultView.getComputedStyle?f.defaultView.getComputedStyle(h):h.currentStyle;if(i&&i[a]!==b)for(e=0;e<c.length;e++)f.write('<link href="'+c[e]+'" '+d+"/>")}("position","absolute",["\/lib\/bootstrap\/dist\/css\/bootstrap.min.css"], "rel=\u0022stylesheet\u0022 integrity=\u0022sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va\u002BPmSTsz\/K68vbdEjh4u\u0022 crossorigin=\u0022anonymous\u0022 ");</script>
+
+        <link rel="stylesheet" href="/css/bundle1.min.css?v=1SEw_HylJX54HjCU6q2oSYDKKhtW8Z5JkII5y5VYDMU">
+    
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext">
+
+    
+
+    
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js">
+        </script>
+<script>(window.jQuery||document.write("\u003Cscript src=\u0022\/lib\/jquery\/dist\/jquery.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+
+        <script src="/lib/moment/min/moment.min.js"></script>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.js">
+        </script>
+<script>(window.jQuery.ui||document.write("\u003Cscript src=\u0022\/lib\/jquery-ui\/jquery-ui.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+
+        <script src="/lib/touchPunch/touchPunch.min.js"></script>
+        <script src="/js/siteBundle.min.js?v=nqnzBFQOWtj1NSFgW1wtl7joopO54BktrjmeJUu4VwI"></script>
+    
+
+    <style>
+        /*centre the spinner*/
+        .sk-fading-circle {
+            position: fixed;
+            z-index: 999;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+
+    <script>
+        CT_TOAST.init('Error', 'Warning', 'Information', 'Success');
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $(".logInOrOut, .adminPageLink").on("click",
+                function (e) {
+                    // when user logs in or out (or access admin pages) we flush the local cache
+                    CT_STORAGE.clearSessionStorage();
+                });
+        });
+
+    </script>
+
+    
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #0d0d0d">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse" style="background-color: #999999">
+
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                    <img src="data:image/png;base64,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" alt="">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+
+
+                <li class="navbar-link"><a id="monthPicker">Date Picker</a></li>
+
+                    <li class="navbar-link"><a id="eventFilter">Event Filter</a></li>
+
+                <li class="navbar-link"><a id="shareCalendar">Share</a></li>
+
+                        <li class="navbar-link"><a href="https://www.celcat.wiki/en/Application_Help/8.2/calendar/homepage?CTDOK=277323390332156110567855" target="_blank">Help</a></li>
+
+            </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                            <a class="logInOrOut" href="/Login/Logout">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>Log Out</span>
+                                <span class="small">- 02537852</span>
+                            </a>
+                    </li>
+                </ul>
+        </div>
+    </div>
+</nav>
+
+    
+
+<div class="sk-fading-circle" hidden="hidden" style="display: none;">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+</div>
+
+<div id="mainContentDiv" class="container-fluid body-content" style="min-width: 355px; margin-left: 0px;">
+    
+    
+
+
+
+
+
+
+<div id="calendarSidebar" class="sidebar" hidden="hidden" style="display: none; width: 0px;">
+    <div class="panel sidebarPanel" style="width: 336px;">
+        <div id="sidebarInBtnDiv" hidden="hidden" style="left: 324px; top: 84px; display: none;">
+            <button class="btn btn-info" type="button">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="sidebarTitleDiv">
+            <h2>
+                <span id="sidebarEventTitle">Event</span>
+            </h2>
+        </div>
+        <div id="sidebarEventContentDiv">(none selected)</div>
+
+
+        <div class="sidebarTitleDiv">
+            <h2>
+                <span id="sidebarRecordsTitle">Student</span>
+            </h2>
+        </div>
+        <div id="sidebarResourceContentDiv" style=""><div class="sidebarResItemDiv" style="border-color: #CCCCCC;background-color: #E5E5E5"><div class="sideBarItemTitle" style="background-color: #CCCCCC"><span class="resNav"><strong>Marcelo Amorelli Ribeiro Kornexl</strong></span></div><div class="sideBarItemContent"><strong>Department:</strong> <span></span><br><strong>Url:</strong> <span></span><br></div></div></div>
+    </div>
+</div>
+
+<div id="sidebarOutBtnDiv" hidden="hidden" style="top: 84px; display: block;">
+    <button class="btn btn-info" type="button">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </button>
+</div>
+
+
+
+
+
+<div class="panel panel-default" id="calBrowseBarDiv">
+    <div class="panel-heading" role="tab" id="browsePanel" data-toggle="collapse" href="#browseBody" aria-expanded="true" aria-controls="browseBody">
+
+        <div id="browseBtn" class="pull-right" type="button" data-toggle="collapse" href="#browseBody" aria-expanded="true" aria-controls="browseBody">
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        </div>
+
+        <h4 class="panel-title" id="browsePanelTitle">
+            <small><span class="badge resCountBadge"></span></small>
+
+            <span class="panelBtnTitle">Marcelo Amorelli Ribeiro Kornexl</span>
+        </h4>
+    </div>
+
+    <div id="browseBody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="browsePanel" aria-expanded="true" style="">
+        <div class="panel-body">
+
+            <form method="post">
+                <div class="col-sm-2 col-md-2">
+                    <div class="form-group">
+                        <label class="control-label" for="resourceTypeSelectList">Type</label><br>
+                        <select class="form-control select2-hidden-accessible" id="resourceTypeSelectList" style="width: 100%" tabindex="-1" aria-hidden="true">
+
+
+                                <option value="100">Course</option>
+                                <option value="101">Faculty</option>
+                                <option value="102">Rooms</option>
+                                <option value="103">Sections</option>
+                                <option value="104">Students</option>
+                                
+                                
+                                
+
+                        </select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-resourceTypeSelectList-container"><span class="select2-selection__rendered" id="select2-resourceTypeSelectList-container" title="Students">Students</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2" id="secondaryFiltersId" style="display: none;">
+                    <div class="form-group" id="resFilters">
+                        <label class="control-label" for="resFilter1">Filters</label>
+                        <div id="filter1" style="display: none;">
+                            <select class="form-control" id="resFilter1" style="width:100%"></select>
+                        </div>
+                        <div id="filter2" style="display: none;">
+                            <select class="form-control" id="resFilter2" style="width:100%"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-10" id="mainResBrowseDiv">
+                    <div class="form-group">
+                        <label class="control-label" for="resourceSelectList">Resource(s)</label><br>
+                        <select class="form-control select2-hidden-accessible" id="resourceSelectList" multiple="" style="width: 100%" tabindex="-1" aria-hidden="true"><option value="02537852">Marcelo Amorelli Ribeiro Kornexl</option></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><span class="select2-selection__clear">×</span><li class="select2-selection__choice" title="Marcelo Amorelli Ribeiro Kornexl"><span class="select2-selection__choice__remove" role="presentation">×</span>Marcelo Amorelli…</li><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="" style="width: 0.75em;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                        <div id="myResCheckBoxDiv">
+                            <label>
+                                <div class="icheckbox_square" style="position: relative;"><input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                <span class="myResSpan">My resources</span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EjOHIzVthpMnweAVq0b2yu1NZciRJE-sPanUrmR-SIV6FxRSSIHijK9Jv6IDxm00OoOC8ZVVDKiieWS24PFmvL6zhqGdBm0hGAwrnaYfw9w5OHBAzipLbDODyWvnI1YdeuAio-8GYjB6igddubZpTkVYCWxugMXiVwoOUOZYn41sDBnTnNAWMBS72woCdkKZg"></form>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="ctDatePicker" hidden="hidden"><div class="panel ctdpMain"><div class="ctdpGroup" data-toggle="buttons"><label class="btn btn-default btn-sm ctdpBtn ctdpYearBtn" data-year="2024"><input type="radio" autocomplete="off" name="options">2024</label><label class="btn btn-default btn-sm ctdpBtn ctdpYearBtn" data-year="2025"><input type="radio" autocomplete="off" name="options">2025</label></div><div class="ctdpGroup" data-toggle="buttons"><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="1"><input type="radio" autocomplete="off" name="options">Jan</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="2"><input type="radio" autocomplete="off" name="options">Feb</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="3"><input type="radio" autocomplete="off" name="options">Mar</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="4"><input type="radio" autocomplete="off" name="options">Apr</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="5"><input type="radio" autocomplete="off" name="options">May</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="6"><input type="radio" autocomplete="off" name="options">Jun</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="7"><input type="radio" autocomplete="off" name="options">Jul</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="8"><input type="radio" autocomplete="off" name="options">Aug</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="9"><input type="radio" autocomplete="off" name="options">Sep</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="10"><input type="radio" autocomplete="off" name="options">Oct</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="11"><input type="radio" autocomplete="off" name="options">Nov</label><label class="btn btn-default btn-sm ctdpBtn ctdpMonthBtn" data-month="12"><input type="radio" autocomplete="off" name="options">Dec</label></div></div></div>
+
+<div class="alert alert-info alert-dismissable" role="alert" id="eventFilterAlert" hidden="hidden">
+    <strong>Information:</strong>
+    The event filter is currently enabled.
+
+    <button class="btn btn-default btn-sm" type="button">Clear Filter</button>
+</div>
+
+<div id="calendar" class="calendardiv fc fc-unthemed fc-ltr"><div class="fc-toolbar fc-header-toolbar"><div class="fc-left"><button type="button" class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled" disabled="">today</button><div class="fc-button-group"><button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button><button type="button" class="fc-next-button fc-button fc-state-default fc-corner-right"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div></div><div class="fc-right"><div class="fc-button-group"><button type="button" class="fc-month-button fc-button fc-state-default fc-corner-left">month</button><button type="button" class="fc-agendaWeek-button fc-button fc-state-default fc-state-active">week</button><button type="button" class="fc-agendaDay-button fc-button fc-state-default">day</button><button type="button" class="fc-listWeek-button fc-button fc-state-default fc-corner-right">list</button></div></div><div class="fc-center"><h2>May 26 – Jun 1, 2025</h2><i class="fa fa-calendar" aria-hidden="true"></i></div><div class="fc-clear"></div></div><div class="fc-view-container" style=""><div class="fc-view fc-agendaWeek-view fc-agenda-view"><table class=""><thead class="fc-head"><tr><td class="fc-head-container fc-widget-header"><div class="fc-row fc-widget-header"><table class=""><thead><tr><th class="fc-axis fc-widget-header" style="width: 44px;"></th><th class="fc-day-header fc-widget-header fc-mon fc-past" data-date="2025-05-26"><a data-goto="{&quot;date&quot;:&quot;2025-05-26&quot;,&quot;type&quot;:&quot;day&quot;}">Mon 5/26</a></th><th class="fc-day-header fc-widget-header fc-tue fc-today" data-date="2025-05-27"><a data-goto="{&quot;date&quot;:&quot;2025-05-27&quot;,&quot;type&quot;:&quot;day&quot;}">Tue 5/27</a></th><th class="fc-day-header fc-widget-header fc-wed fc-future" data-date="2025-05-28"><a data-goto="{&quot;date&quot;:&quot;2025-05-28&quot;,&quot;type&quot;:&quot;day&quot;}">Wed 5/28</a></th><th class="fc-day-header fc-widget-header fc-thu fc-future" data-date="2025-05-29"><a data-goto="{&quot;date&quot;:&quot;2025-05-29&quot;,&quot;type&quot;:&quot;day&quot;}">Thu 5/29</a></th><th class="fc-day-header fc-widget-header fc-fri fc-future" data-date="2025-05-30"><a data-goto="{&quot;date&quot;:&quot;2025-05-30&quot;,&quot;type&quot;:&quot;day&quot;}">Fri 5/30</a></th><th class="fc-day-header fc-widget-header fc-sat fc-future" data-date="2025-05-31"><a data-goto="{&quot;date&quot;:&quot;2025-05-31&quot;,&quot;type&quot;:&quot;day&quot;}">Sat 5/31</a></th><th class="fc-day-header fc-widget-header fc-sun fc-future" data-date="2025-06-01"><a data-goto="{&quot;date&quot;:&quot;2025-06-01&quot;,&quot;type&quot;:&quot;day&quot;}">Sun 6/1</a></th></tr></thead></table></div></td></tr></thead><tbody class="fc-body"><tr><td class="fc-widget-content"><div class="fc-day-grid fc-unselectable"><div class="fc-row fc-week fc-widget-content"><div class="fc-bg"><table class=""><tbody><tr><td class="fc-axis fc-widget-content" style="width: 44px;"><span>all-day</span></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2025-05-26"></td><td class="fc-day fc-widget-content fc-tue fc-today " data-date="2025-05-27"></td><td class="fc-day fc-widget-content fc-wed fc-future" data-date="2025-05-28"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2025-05-29"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2025-05-30"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2025-05-31"></td><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2025-06-01"></td></tr></tbody></table></div><div class="fc-content-skeleton"><table><tbody><tr><td class="fc-axis" style="width:44px"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div></div><hr class="fc-divider fc-widget-header"><div class="fc-scroller fc-time-grid-container" style="overflow: hidden auto; height: auto;"><div class="fc-time-grid fc-unselectable"><div class="fc-bg"><table class=""><tbody><tr><td class="fc-axis fc-widget-content" style="width: 44px;"></td><td class="fc-day fc-widget-content fc-mon fc-past" data-date="2025-05-26"></td><td class="fc-day fc-widget-content fc-tue fc-today " data-date="2025-05-27"></td><td class="fc-day fc-widget-content fc-wed fc-future" data-date="2025-05-28"></td><td class="fc-day fc-widget-content fc-thu fc-future" data-date="2025-05-29"></td><td class="fc-day fc-widget-content fc-fri fc-future" data-date="2025-05-30"></td><td class="fc-day fc-widget-content fc-sat fc-future" data-date="2025-05-31"></td><td class="fc-day fc-widget-content fc-sun fc-future" data-date="2025-06-01"></td></tr></tbody></table></div><div class="fc-slats"><table class=""><tbody><tr data-time="08:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>8am</span></td><td class="fc-widget-content"></td></tr><tr data-time="08:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="09:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>9am</span></td><td class="fc-widget-content"></td></tr><tr data-time="09:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="10:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>10am</span></td><td class="fc-widget-content"></td></tr><tr data-time="10:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="11:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>11am</span></td><td class="fc-widget-content"></td></tr><tr data-time="11:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="12:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>12pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="12:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="13:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>1pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="13:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="14:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>2pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="14:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="15:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>3pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="15:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="16:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>4pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="16:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="17:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>5pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="17:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="18:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>6pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="18:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="19:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>7pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="19:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="20:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>8pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="20:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr><tr data-time="21:00:00"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"><span>9pm</span></td><td class="fc-widget-content"></td></tr><tr data-time="21:30:00" class="fc-minor"><td class="fc-axis fc-time fc-widget-content" style="width: 44px;"></td><td class="fc-widget-content"></td></tr></tbody></table></div><hr class="fc-divider fc-widget-header" style="display:none"><div class="fc-content-skeleton"><table><tbody><tr><td class="fc-axis" style="width: 44px;"></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"><a class="fc-time-grid-event fc-v-event fc-event fc-start fc-end" style="background-color: rgb(0, 0, 255); border-color: rgb(1, 42, 54); color: rgb(255, 255, 255); inset: 109.5px 0% -241.5px; z-index: 1;" id="569081157:-2070042380:16:569605:39"><div class="fc-content"><div class="fc-time" data-start="10:30 AM" data-full="10:30 AM - 1:30 PM"><span>10:30 AM - 1:30 PM</span></div>LCSCI7224_30786729
+
+<br>
+
+Devon House 134 [20 Cap]
+
+<br>
+
+Waleed Iqbal
+
+<br>
+
+Web Services_Sum_S1
+</div><div class="fc-bg"></div></a><a class="fc-time-grid-event fc-v-event fc-event fc-start fc-end" style="background-color: rgb(0, 0, 255); border-color: rgb(1, 42, 54); color: rgb(255, 255, 255); inset: 285.5px 0% -417.5px; z-index: 1;" id="569081157:-2070042380:16:569609:39"><div class="fc-content"><div class="fc-time" data-start="2:30 PM" data-full="2:30 PM - 5:30 PM"><span>2:30 PM - 5:30 PM</span></div>LCSCI7224_30786729
+
+<br>
+
+Devon House 134 [20 Cap]
+
+<br>
+
+Waleed Iqbal
+
+<br>
+
+Web Services_Sum_S1
+</div><div class="fc-bg"></div></a></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"><a class="fc-time-grid-event fc-v-event fc-event fc-start fc-end" style="background-color: rgb(0, 0, 255); border-color: rgb(1, 42, 54); color: rgb(255, 255, 255); inset: 87.5px 0% -219.5px; z-index: 1;" id="569081157:-2070042380:16:558303:39"><div class="fc-content"><div class="fc-time" data-start="10:00 AM" data-full="10:00 AM - 1:00 PM"><span>10:00 AM - 1:00 PM</span></div>LCSCI7228_30789170
+
+<br>
+
+Devon House 130 [8 Cap] 
+
+<br>
+
+Ibukun Tolulope Afolabi
+
+<br>
+
+Database Management Systems_Sum_S1
+</div><div class="fc-bg"></div></a><a class="fc-time-grid-event fc-v-event fc-event fc-start fc-end" style="background-color: rgb(0, 0, 255); border-color: rgb(1, 42, 54); color: rgb(255, 255, 255); inset: 263.5px 0% -395.5px; z-index: 1;" id="569081157:-2070042380:16:558302:39"><div class="fc-content"><div class="fc-time" data-start="2:00 PM" data-full="2:00 PM - 5:00 PM"><span>2:00 PM - 5:00 PM</span></div>LCSCI7228_30789170
+
+<br>
+
+Devon House 130 [8 Cap] 
+
+<br>
+
+Ibukun Tolulope Afolabi
+
+<br>
+
+Database Management Systems_Sum_S1
+</div><div class="fc-bg"></div></a></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td><td><div class="fc-content-col"><div class="fc-event-container fc-helper-container"></div><div class="fc-event-container"></div><div class="fc-highlight-container"></div><div class="fc-bgevent-container"></div><div class="fc-business-container"></div></div></td></tr></tbody></table></div></div></div></td></tr></tbody></table></div></div></div>
+
+    <div id="ctColourKey"><div class="panel panel-info colorKey small"><div class="panel-body"><div class="dropdown dropup"><a class="dropdown-toggle" id="colorKeyTitle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="colorKeyTitleText">Colour scheme - Department</span><span class="caret"></span></a><ul class="dropdown-menu" aria-labelledby="colorKeyTitle"><li><a class="schemeMenuItem" href="#">Department</a></li></ul></div><div class="colours" style=""><span data-toggle="tooltip" class="colorKeyItem" title="" style="background-color:#0000FF;color:#ffffff;cursor:pointer" data-scheme-num="1" data-is-none="false" data-is-multiple="false" data-can-filter="true" data-original-title="Computing and Information Systems Discipline">Computing and Information Systems Discipline</span></div></div></div></div>
+
+
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="shareModalLabel">Share Calendar</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Share the current calendar by sending one of the following links</p>
+
+                <div class="alert alert-success alert-dismissable" role="alert" hidden="hidden">
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                    <strong>Success!</strong> - Copied to clipboard. Paste into your message and send
+                </div>
+
+                <form role="form">
+
+                    <div class="form-group">
+                        <label for="shareDateInput">Calendar for the selected date:</label>
+                        <input class="form-control" id="shareDateInput" readonly="readonly">
+                        <button class="btn btn-default copyShareUrlBtn" type="button">Copy</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shareTodayInput">Calendar for 'today'</label>
+                        <input class="form-control" id="shareTodayInput" readonly="readonly">
+                        <button class="btn btn-default copyShareUrlBtn" type="button">Copy</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shareEventInput">Highlighted event</label>
+                        <input class="form-control" id="shareEventInput" readonly="readonly">
+                        <button class="btn btn-default copyShareUrlBtn" type="button">Copy</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="eventFilterModal" tabindex="-1" role="dialog" aria-labelledby="eventFilterModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="eventFilterModalLabel">Event Filter</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Filter the events that are displayed in the calendar</p>
+
+                <form role="form">
+
+                    <div class="form-group">
+                        <label class="control-label titleLabel" for="categoryFilter">
+                            Event category
+                            <input type="checkbox" id="undefinedCategory" class="pull-right undefinedFilterCb">
+                            <label for="undefinedCategory" class="pull-right undefinedLabel">None</label>
+                        </label>
+                        <select class="form-control select2-hidden-accessible" id="categoryFilter" style="width: 100%" tabindex="-1" aria-hidden="true"></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-categoryFilter-container"><span class="select2-selection__rendered" id="select2-categoryFilter-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label titleLabel" for="deptFilter">
+                            Department
+                            <input type="checkbox" id="undefinedDept" class="pull-right undefinedFilterCb">
+                            <label for="undefinedDept" class="pull-right undefinedLabel">None</label>
+                        </label>
+                        <select class="form-control select2-hidden-accessible" id="deptFilter" style="width: 100%" tabindex="-1" aria-hidden="true"></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-deptFilter-container"><span class="select2-selection__rendered" id="select2-deptFilter-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label titleLabel" for="facultyFilter">
+                            Faculty
+                            <input type="checkbox" id="undefinedFaculty" class="pull-right undefinedFilterCb">
+                            <label for="undefinedFaculty" class="pull-right undefinedLabel">None</label>
+                        </label>
+                        <select class="form-control select2-hidden-accessible" id="facultyFilter" style="width: 100%" tabindex="-1" aria-hidden="true"></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-facultyFilter-container"><span class="select2-selection__rendered" id="select2-facultyFilter-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label titleLabel" for="siteFilter">
+                            Site
+                            <input type="checkbox" id="undefinedSite" class="pull-right undefinedFilterCb">
+                            <label for="undefinedSite" class="pull-right undefinedLabel">None</label>
+                            <input type="checkbox" id="multipleSite" class="pull-right multipleFilterCb">
+                            <label for="multipleSite" class="pull-right undefinedLabel">Multiple</label>
+                        </label>
+                        <select class="form-control select2-hidden-accessible" id="siteFilter" style="width: 100%" tabindex="-1" aria-hidden="true"></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-siteFilter-container"><span class="select2-selection__rendered" id="select2-siteFilter-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label titleLabel" for="moduleFilter">
+                                Course
+                                <input type="checkbox" id="undefinedModule" class="pull-right undefinedFilterCb">
+                                <label for="undefinedModule" class="pull-right undefinedLabel">None</label>
+                                <input type="checkbox" id="multipleModule" class="pull-right multipleFilterCb">
+                                <label for="multipleModule" class="pull-right undefinedLabel">Multiple</label>
+                            </label>
+                            <select class="form-control select2-hidden-accessible" id="moduleFilter" style="width: 100%" tabindex="-1" aria-hidden="true"></select><span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-moduleFilter-container"><span class="select2-selection__rendered" id="select2-moduleFilter-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+
+
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="eventFilterOkBtn" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                <button id="eventFilterCancelBtn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <hr>
+    <footer class="small">
+        <div class="row">
+            <div class="col-xs-6 hidden-xs hidden-print">
+                <p>© 2025 - CELCAT Calendar <span class="small">(v8.2.524.0)</span></p>
+            </div>
+            <div class="col-xs-6 text-right">
+                
+
+
+
+    <div title="Request culture provider AcceptLanguageHeaderRequestCultureProvider">
+        <form id="selectLanguage" method="post" class="form-horizontal" role="form" action="/Home/SetLanguage?returnUrl=~%2F">
+            <div class="hidden-print">
+                <span class="hidden-sm hidden-xs">Language</span>
+                <select name="culture" onchange="this.form.submit();" id="requestCulture_RequestCulture_UICulture_Name"><option value="en-GB">English (United Kingdom)</option>
+<option selected="selected" value="en-US">English (United States)</option>
+<option value="fr-FR">French (France)</option>
+</select>
+            </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EjOHIzVthpMnweAVq0b2yu1NZciRJE-sPanUrmR-SIV6FxRSSIHijK9Jv6IDxm00OoOC8ZVVDKiieWS24PFmvL6zhqGdBm0hGAwrnaYfw9w5OHBAzipLbDODyWvnI1YdeuAio-8GYjB6igddubZpTkVYCWxugMXiVwoOUOZYn41sDBnTnNAWMBS72woCdkKZg"></form>
+    </div>
+
+            </div>
+        </div>
+        
+        
+        
+    </footer>
+</div>
+
+
+
+
+    <script src="/js/bundle1.min.js"></script>
+
+    <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js">
+    </script>
+<script>(window.jQuery && window.jQuery.fn && window.jQuery.fn.modal||document.write("\u003Cscript src=\u0022\/lib\/bootstrap\/dist\/js\/bootstrap.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+
+    <script src="/js/bundle2.min.js"></script>
+
+
+
+    
+
+    
+        <link rel="stylesheet" href="/css/homepageBundle.min.css?v=0LrOhBI8xW3Qg17QU3TBzMT0T2xYw0g_iFD-MVqyggM">
+        <script src="/js/homepageBundle.min.js?v=_11NghE6HLe9Xmr96srti4ikliWcGD3dVmb7GDkixJA"></script>
+    
+
+    <script>
+        // this script before dom is loaded
+        (function() {
+            var localizedStrings = {};
+            localizedStrings.NONE = 'none';
+            localizedStrings.BROWSE = 'Browse...';
+            localizedStrings.RECORDS = 'Records';
+            localizedStrings.NONE_SEL = '(none selected)';
+            localizedStrings.NO_EVENT_SEL = 'No event selected';
+            localizedStrings.MORE_ASSIGNMENTS = '[&#x2B;{0} more...]';
+            localizedStrings.COLOUR_SCHEME_TITLE = 'Colour scheme - {0}';
+            localizedStrings.NOT_ALLOWED_BROWSE = 'You don&#x27;t have permission to browse this resource';
+            localizedStrings.ERROR_GETTING_DATA = 'Could not retrieve data from Calendar server!';
+            localizedStrings.PERSONAL_DATA = 'PERSONAL DATA:';
+            localizedStrings.MISSING_EVENT = 'The event may have been deleted';
+            localizedStrings.DEPARTMENTS = 'departments';
+            localizedStrings.COURSES = 'courses';
+            localizedStrings.SITES = 'sites';
+            localizedStrings.ALL = 'All {0}';
+            
+            var minInputLen = '2';
+            var maxSelLen = '20';
+            var showResDepts = false;
+            var useClientCache = false;
+            var pageSize = '50';
+            var isSmartKey = true;
+            var defaultColourScheme = 1;
+
+            var validCalendarViewNames =
+                ["month","agendaWeek","agendaDay","listWeek"];
+
+
+            var localeCodeStr = 'en';
+            var federationIdStr = '02537852';
+            var monthNamesJson = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+            var modelJson = {"calendarDate":"2025-05-27T00:00:00","eventId":null,"federationIds":["02537852"],"calendarViewStr":"agendaWeek","entityTypeAsIntegerString":"104","isValid":true,"notAllowedToBrowse":false};
+            var brandingColor = '#0d0d0d';
+            var sideBarColorDark = '#CCCCCC';
+            var sideBarColorLight = '#E5E5E5';
+            var truncateSidebarLongLines = false;
+            
+
+            // convert dateExtents to Date objects...
+            var dateExtents = {
+                earliest: new Date(2024, 8 - 1, 26),
+                latest: new Date(2025, 8 - 1, 24)
+            };
+
+
+            var colourKeyMenuItemsJson = [{"text":"Department","value":1,"clickableItems":true}];
+            var calFormat = {"startHourOfDay":8,"endHourOfDay":22,"startDayOfWeek":1,"hiddenDays":[],"showNonCurrentDates":false,"defaultAppointmentBorderColor":"#012a36","eventOverlapInAgendaView":false};
+            var browsingProfileJson = {"userType":4,"browseOwnTimetable":true,"browseModules":true,"browseRooms":true,"browseStaff":true,"browseGroups":true,"browseStudents":false,"browseTeams":false,"browseEquipment":false,"browseCourses":false,"enableSideBarResources":true,"enableSideBarEvent":true,"enableMyResources":true,"myResourcesUsesCommonEvents":true,"myResourcesUsesStaff1":false,"myResourcesUsesStaff2":false,"myResourcesUsesTeamMembership":false,"myResourcesUsesTutorship":false,"myResourcesUsesGroupMembership":true};
+            var appRootPath = "/";
+            var sessionDurationSecs = '1800';
+
+            var homepageOptions = {
+                appRoot: appRootPath,
+                localeCode: localeCodeStr,
+                minInputLen: minInputLen,
+                maxSelLen: maxSelLen,
+                showResDepts: showResDepts,
+                localizedStrings: localizedStrings,
+                pageSize: pageSize,
+                validCalendarViewNames: validCalendarViewNames,
+                monthNamesJson: monthNamesJson,
+                modelJson: modelJson,
+                dateExtents: dateExtents,
+                colourKeyMenuItems: colourKeyMenuItemsJson,
+                isSmartKey: isSmartKey,
+                calFormat: calFormat,
+                browsingProfile: browsingProfileJson,
+                userFederationId: federationIdStr,
+                useClientCache: useClientCache,
+                brandingColor: brandingColor,
+                sideBarColorDark: sideBarColorDark,
+                sideBarColorLight: sideBarColorLight,
+                defaultColourScheme: defaultColourScheme,
+                sessionDurationSecs: sessionDurationSecs,
+                truncateSidebarLongLines: truncateSidebarLongLines
+            };
+
+            CT_HOMEPAGE.init(homepageOptions);
+        })();
+
+    </script>
+
+    
+
+
+</body></html>
